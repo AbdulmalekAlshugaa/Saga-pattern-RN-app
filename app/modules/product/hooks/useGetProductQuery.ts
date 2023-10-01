@@ -1,10 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import { ProductApiRoute, GetProducts } from '../src/productApi';
+import { ProductApiRoute } from '../src/productApi';
+import networkApi from '../../network/src/networkApi';
 
-export async function useGetProducts() {
+
+export const useGetProducts = () => {
+    const staleTime = 60 * 1000; // 1 minute
     return useQuery([ProductApiRoute.GET_PRODUCTS], async () => {
-        const response: any = await GetProducts()
+        const response = await networkApi.get(ProductApiRoute.GET_PRODUCTS);
+        if (!response.ok) {
+            throw response;
+        }
         return response.data;
-    });
-}
-// TODO: add types to response .
+    },
+        { cacheTime: staleTime, staleTime }
+    );
+};
+// TODO: add types to response.

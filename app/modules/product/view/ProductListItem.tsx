@@ -3,8 +3,10 @@ import React from 'react'
 import { useGetProducts } from '../hooks/useGetProductQuery';
 
 export default function ProductListItem() {
-    const { data, isLoading, error } = useGetProducts();
-    console.log(data, isLoading, error);
+    const { data, isSuccess, isFetched } = useGetProducts();
+    console.log(isFetched);
+
+
     return (
         <View>
             <Text>ProductListItem</Text>
