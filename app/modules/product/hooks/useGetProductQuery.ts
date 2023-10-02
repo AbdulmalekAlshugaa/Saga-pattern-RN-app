@@ -7,7 +7,7 @@ export const useGetProducts = () => {
     return useQuery([ProductApiRoute.getProducts], async () => {
         const response = await networkApi.get(ProductApiRoute.getProducts);
         if (!response.ok) {
-            throw response;
+            throw response.data;
         }
         return response.data;
     },
