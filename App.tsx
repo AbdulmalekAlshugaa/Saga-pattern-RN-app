@@ -1,10 +1,10 @@
 import { PaperProvider } from "react-native-paper";
 import { Provider } from "react-redux";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import AppNavigation from "./app/modules/navigation/mainAppNavigation";
+import AppNavigation from "./app/modules/navigation/MainAppNavigation";
 import store from "./app/modules/main/src/configureStore";
 
-export default function App() {
+const App = ()=> {
   const queryClient = new QueryClient();
   return (
     <Provider store={store}>
@@ -16,3 +16,5 @@ export default function App() {
     </Provider>
   );
 }
+
+export default App;

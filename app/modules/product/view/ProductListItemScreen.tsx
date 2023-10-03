@@ -1,8 +1,9 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, FlatList, SafeAreaView } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 import ProductListItem from "./ProductListItem";
 import { useGetProducts } from "../hooks/useGetProductQuery";
 import MainSafeAreaScreen from "../../main/view/MainSafeAreaScreen";
+import {navigateTo}  from '../../navigation/RootNavigation';
+import { mainAppRoutes } from "../../navigation/mainScreenRoutes";
 
 export default function ProductListItemScreen() {
   const { data = [], isLoading , isError, error } = useGetProducts();
@@ -13,7 +14,12 @@ export default function ProductListItemScreen() {
        numColumns={2}
         data={data}
         renderItem={({ item }) => (
-          <ProductListItem title={item.title} image={item.image} price={item.price} />
+          <ProductListItem
+           onPress={
+            ()=> navigateTo(mainAppRoutes.productDetail, {id: item.id}) 
+              
+           }
+           title={item.title} image={item.image} price={item.price} />
         )}
         keyExtractor={(item) => item.id}
       />
