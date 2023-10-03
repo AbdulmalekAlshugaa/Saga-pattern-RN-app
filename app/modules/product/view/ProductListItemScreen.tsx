@@ -2,22 +2,26 @@ import { StyleSheet, FlatList } from "react-native";
 import ProductListItem from "./ProductListItem";
 import { useGetProducts } from "../hooks/useGetProductQuery";
 import MainSafeAreaScreen from "../../main/view/MainSafeAreaScreen";
-import {navigateTo}  from '../../navigation/RootNavigation';
+import { navigateTo } from "../../navigation/RootNavigation";
 import { mainAppRoutes } from "../../navigation/mainScreenRoutes";
 
 export default function ProductListItemScreen() {
-  const { data = [], isLoading , isError, error } = useGetProducts();
+  const { data = [], isLoading, isError, error } = useGetProducts();
 
   return (
-    <MainSafeAreaScreen >
+    <MainSafeAreaScreen>
       <FlatList
-       numColumns={2}
+        numColumns={2}
         data={data}
         renderItem={({ item }) => (
           <ProductListItem
-           onPress={
-            ()=> navigateTo(mainAppRoutes.productDetail, {item: item}) }
-           title={item.title} image={item.image} price={item.price} />
+            onPress={() =>
+              navigateTo(mainAppRoutes.productDetail, { item: item })
+            }
+            title={item.title}
+            image={item.image}
+            price={item.price}
+          />
         )}
         keyExtractor={(item) => item.id}
       />

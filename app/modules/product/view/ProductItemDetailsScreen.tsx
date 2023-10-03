@@ -28,25 +28,17 @@ const ProductLisDetailsScreen = () => {
         source={{ uri: data.image }}
         style={styles.imageBackground}
       >
+         <View style={styles.subViewContainer}>
+          <ClarkIcon name={"cards-heart"} color={COLORS.black} size={24} />
+        </View>
       <ClarkIcon
-          
           style={styles.backButton}
           name={"arrow-left"}
           color={COLORS.black}
           size={24}
-          
         />
         
-       
-        <View style={styles.subViewContainer}>
-          <ClarkIcon
-            style={styles.icon}
-            name={"cart"}
-            color={COLORS.black}
-            size={24}
-          />
-          <ClarkIcon name={"cards-heart"} color={COLORS.black} size={24} />
-        </View>
+
       </ImageBackground>
     </MainSafeAreaScreen>
   );
@@ -117,14 +109,16 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   imageBackground: {
-    flex: 1,
     backgroundColor: COLORS.white,
-  },
+      height: SIZES.height / 2,
+      width: SIZES.width,
+  
+    },
   subViewContainer: {
-    bottom: 0,
+    bottom: 50,
     position: "absolute",
     alignSelf: "flex-end",
-    padding: SIZES.S_5,
+    padding: SIZES.S_10,
   },
   image: {
     width: "100%",
