@@ -17,10 +17,3 @@ export default function App() {
     </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
-});
