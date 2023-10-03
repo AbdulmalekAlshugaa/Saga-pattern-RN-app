@@ -1,6 +1,7 @@
 import { TouchableOpacity, View, ViewStyle } from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { COLORS } from "../modules/main/src/mainConstants";
 
 interface ClarkIconProps {
   name: string;

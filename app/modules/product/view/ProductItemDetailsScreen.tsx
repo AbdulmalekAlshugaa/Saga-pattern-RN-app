@@ -1,6 +1,6 @@
 import {
   StyleSheet,
-  Image,
+  StatusBar,
   View,
   ImageBackground,
   ScrollView,
@@ -21,12 +21,23 @@ const ProductLisDetailsScreen = () => {
   console.log("data", data);
   const renderProductListItem = () => (
     <MainSafeAreaScreen style={styles.imageBackground}>
+     
       <ImageBackground
         resizeMode={"contain"}
         imageStyle={styles.image}
         source={{ uri: data.image }}
         style={styles.imageBackground}
       >
+      <ClarkIcon
+          
+          style={styles.backButton}
+          name={"arrow-left"}
+          color={COLORS.black}
+          size={24}
+          
+        />
+        
+       
         <View style={styles.subViewContainer}>
           <ClarkIcon
             style={styles.icon}
@@ -159,6 +170,10 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.S_8,
     margin: SIZES.S_10,
     flex: 0.1,
+  },
+  backButton: {
+    marginVertical: SIZES.S_5,
+    marginHorizontal: SIZES.S_5,
   },
 });
 
