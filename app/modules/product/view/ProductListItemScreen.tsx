@@ -16,9 +16,7 @@ export default function ProductListItemScreen() {
         renderItem={({ item }) => (
           <ProductListItem
            onPress={
-            ()=> navigateTo(mainAppRoutes.productDetail, {id: item.id}) 
-              
-           }
+            ()=> navigateTo(mainAppRoutes.productDetail, {item: item}) }
            title={item.title} image={item.image} price={item.price} />
         )}
         keyExtractor={(item) => item.id}
