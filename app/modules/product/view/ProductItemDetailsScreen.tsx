@@ -13,63 +13,56 @@ import ClarkIcon from "../../../components/ClarkIcon";
 import ClarkBodyText from "../../../components/ClarkBodyText";
 import ClarkRatting from "../../../components/ClarkRatting";
 import ClarkButton from "../../../components/ClarkButton";
+import { useAppDispatch } from "../../main/src/configureStore";
+import { productActions } from "../src/productAction";
 
 const ProductLisDetailsScreen = () => {
   const route = useRoute();
-  const data = route.params?.item;
 
-  console.log("data", data);
+  const product = route.params?.product;
+  console.log("product", product);
+
+  const dispatch = useAppDispatch();
+  const dropOff = () => dispatch(productActions.dropOffProduct());
+
   const renderProductListItem = () => (
     <MainSafeAreaScreen style={styles.imageBackground}>
-     
-      <ImageBackground
-        resizeMode={"contain"}
-        imageStyle={styles.image}
-        source={{ uri: data.image }}
-        style={styles.imageBackground}
-      >
-         <View style={styles.subViewContainer}>
-          <ClarkIcon name={"cards-heart"} color={COLORS.black} size={24} />
+      <ImageBackground  resizeMode={"contain"} imageStyle={styles.image} source={{ uri: product.image }}style={styles.imageBackground} >
+        <View style={styles.subViewContainer}> 
+        <ClarkIcon name={"cards-heart"} color={COLORS.black} size={24} />
         </View>
-      <ClarkIcon
-          style={styles.backButton}
-          name={"arrow-left"}
-          color={COLORS.black}
-          size={24}
-        />
-        
-
+        <ClarkIcon style={styles.backButton} name={"arrow-left"}color={COLORS.black} size={24} onPress={() => dropOff()}/>
       </ImageBackground>
     </MainSafeAreaScreen>
   );
 
   const renderProductRatting = () => (
     <View style={styles.productRattingView}>
-      <ClarkRatting rating={data.rating.rate} />
+      <ClarkRatting rating={product.rating.rate} />
       <ClarkBodyText
         style={{
           marginHorizontal: SIZES.S_7,
         }}
         variant={"bodySmall"}
-        title={`(${data.rating.count} Reviews)`}
+        title={`(${product.rating.count} Reviews)`}
       />
     </View>
   );
 
   const renderProductDescription = () => (
     <View style={styles.productDescriptionView}>
-      <ClarkBoldText variant={"titleMedium"} title={data.title} />
+      <ClarkBoldText variant={"titleMedium"} title={product.title} />
       <ClarkBodyText
         style={styles.body}
         variant={"bodyMedium"}
-        title={data.category}
+        title={product.category}
       />
       {renderProductRatting()}
       <ClarkBoldText style={styles.descriptionTitle} title={"Description"} />
       <ClarkBodyText
         style={styles.description}
         variant={"bodyMedium"}
-        title={data.description}
+        title={product.description}
       />
     </View>
   );
@@ -82,7 +75,7 @@ const ProductLisDetailsScreen = () => {
           variant={"bodySmall"}
           title={"Total Price"}
         />
-        <ClarkBoldText title={`$${data.price}`} variant={"titleMedium"} />
+        <ClarkBoldText title={`$${product.price}`} variant={"titleMedium"} />
       </View>
 
       <ClarkButton label={"Add to Cart"} icon="cart" oPress={() => {}} />
@@ -110,10 +103,9 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     backgroundColor: COLORS.white,
-      height: SIZES.height / 2,
-      width: SIZES.width,
-  
-    },
+    height: SIZES.height / 2,
+    width: SIZES.width,
+  },
   subViewContainer: {
     bottom: 50,
     position: "absolute",
