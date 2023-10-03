@@ -1,6 +1,8 @@
 import {  configureStore, createListenerMiddleware, Middleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { useDispatch } from 'react-redux'
+import rootSaga from '../daemon';
+import counterSlice from '../../product/src/counterSlice';
 
 const sagaMiddleware = createSagaMiddleware({
     onError: (error, { sagaStack }) => {
@@ -17,7 +19,7 @@ const MIDDLEWARE: Middleware[] = [
 
 export const store = configureStore({
     reducer: {
-        // main: mainReducer,
+        counter:counterSlice
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
@@ -28,7 +30,8 @@ export const store = configureStore({
             .concat(MIDDLEWARE),
 
     devTools: true, // Redux DevTools integration.
-})
+});
+sagaMiddleware.run(rootSaga);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type AppDispatch = typeof store.dispatch

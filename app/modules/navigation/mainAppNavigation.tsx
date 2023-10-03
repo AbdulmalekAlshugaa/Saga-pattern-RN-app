@@ -4,19 +4,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductListItemScreen from '../product/view/ProductListItemScreen';
 import ProductLisDetailsScreen from '../product/view/ProductItemDetailsScreen';
 import { mainAppRoutes } from './mainScreenRoutes';
-
+import { navigationRef } from './RootNavigation';
 const Stack = createNativeStackNavigator();
-
 
 export default function AppNavigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName={mainAppRoutes.productList}>
         <Stack.Screen name={mainAppRoutes.productList} options={{ headerShown: false }} component={ProductListItemScreen} />
         <Stack.Screen name={mainAppRoutes.productDetail} options={{ headerShown: false }} component={ProductLisDetailsScreen} />
-        
       </Stack.Navigator>
     </NavigationContainer>
-  )
-
-}
+  );
+};

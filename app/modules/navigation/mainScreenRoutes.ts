@@ -6,6 +6,7 @@ export const mainAppRoutes = Object.freeze({
 export const mainAppRouteOptions = Object.freeze({
     ProductList: {
         title: 'Product List',
+        
     },
     ProductDetail: {
         title: 'Product Detail',
