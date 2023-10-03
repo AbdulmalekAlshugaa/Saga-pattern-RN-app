@@ -4,17 +4,15 @@ import { PaperProvider } from 'react-native-paper';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import ProductListItem from './app/modules/product/view/ProductListItem';
+import ProductListItemScreen from './app/modules/product/view/ProductListItemScreen';
+import AppNavigation from './app/modules/main/navigation/mainAppNavigation';
 
 export default function App() {
   const queryClient = new QueryClient()
   return (
     <QueryClientProvider client={queryClient}>
       <PaperProvider>
-        <View style={styles.container}>
-          <Text>Open up App.tsx to start working on ddyour app!</Text>
-          <ProductListItem />
-          <StatusBar style="auto" />
-        </View>
+         <AppNavigation/>
       </PaperProvider>
     </QueryClientProvider>
   );
@@ -22,9 +20,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });
