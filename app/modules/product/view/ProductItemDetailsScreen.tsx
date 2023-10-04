@@ -36,7 +36,7 @@ type ProductLisDetailsNavProps = NativeStackScreenProps<parameters, 'ProductLisD
 
 const ProductLisDetailsScreen = (props: NativeStackScreenProps<ProductLisDetailsNavProps>) => {
 
-  const product = props.route.params?.product ;
+  const product = props.route.params?.product 
   const dispatch = useAppDispatch();
   const dropOff = () => dispatch(productActions.dropOffProduct());
 
