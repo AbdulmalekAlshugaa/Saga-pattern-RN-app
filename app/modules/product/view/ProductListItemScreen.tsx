@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect ,useState} from "react";
 import { RefreshControl, FlatList } from "react-native";
 import ProductListItem from "./ProductListItem";
 import { useGetProducts } from "../hooks/useGetProductQuery";
@@ -6,19 +6,12 @@ import MainSafeAreaScreen from "../../main/view/MainSafeAreaScreen";
 import { productActions } from "../src/productAction";
 import { useAppDispatch } from "../../main/src/configureStore";
 import MainLoadingScreen from "../../main/view/MainLoadingScreen";
+import ProductSearch from "./ProductSearch";
+import { useDebounce } from "../hooks/useDebounce";
 
 export default function ProductListItemScreen() {
-  const {
-    data = [],
-    isLoading,
-    isError,
-    error,
-    isSuccess,
-    isRefetching,
-    refetch
-  } = useGetProducts();
-
-
+  const { data, isLoading,  isSuccess, isRefetching, refetch } = useGetProducts();
+  const [products, setProducts] = useState<product.productResponse[]>(data as product.productResponse[]);
   const dispatch = useAppDispatch();
   const exist = () => dispatch(productActions.exitProduct());
   const enterProductListItem = () => dispatch(productActions.enterProductList());
@@ -40,19 +33,26 @@ export default function ProductListItemScreen() {
     />
   );
 
+  const applySearch = useDebounce((value: string) => {
+    const finalProducts : product.productResponse[] = data as product.productResponse[];
+    setProducts(finalProducts.filter((item:product.productResponse) => item.title.toLowerCase().includes(value.toLowerCase())));
+  }, 700); // Debounce time in milliseconds
+
   return (
     <>
       {isLoading ? (
         <MainLoadingScreen />
       ) : isSuccess ? (
         <MainSafeAreaScreen>
+          <ProductSearch
+            onChangeText={applySearch}
+           />
           <FlatList
             numColumns={2}
-            data={data}
+            data={products}
             showsVerticalScrollIndicator={false}
             alwaysBounceVertical={false}
             renderItem={({ item }) => renderProduct(item)}
-            keyExtractor={(item) => item.id}
             refreshControl={
               <RefreshControl
                 refreshing={isRefetching}

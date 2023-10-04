@@ -2,10 +2,15 @@
 declare namespace product {
 
     interface State {
-        loading: boolean;
-        error: string;
-        data: productResponse[];
-    }
+        data: productResponse[]; // Assuming data is an array of Product type
+        isLoading: boolean;
+        isError: boolean;
+        error: Error | null;
+        isSuccess: boolean;
+        isRefetching: boolean;
+        refetch: () => void;
+        // Add more properties or methods if the hook returns additional values
+      }
 
     interface productResponse {
         id: number;
