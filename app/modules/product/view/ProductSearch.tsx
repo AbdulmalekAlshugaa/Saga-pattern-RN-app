@@ -15,10 +15,6 @@ const ProductSearch = (props: ProductSearchProps) => {
     const [inputString, setInputString] = useState('');
     let inputRef: any = null;
 
-    const _onClear = () => {
-        setInputString('');
-    };
-
     const _onChangeText = (text: string) => {
         setInputString(text);
         if (props.onChangeText) {
@@ -30,13 +26,7 @@ const ProductSearch = (props: ProductSearchProps) => {
         if (props.onFocus) { props.onFocus(); }
     };
 
-    const _onCancel = () => {
-        if (Platform.OS === 'ios') {
-            inputRef.clear();
-            setInputString('');
-            if (props.onCancel) { props.onCancel(); }
-        }
-    };
+   
 
   return (
     <Searchbar
@@ -57,7 +47,9 @@ export default ProductSearch;
 
 const styles = StyleSheet.create({
   container: {
-    marginStart: 10,
-    marginEnd: 10,
+    borderRadius: 15,
+    elevation: 5,
+    marginVertical: 10,
+    marginHorizontal: 10,
   },
 });

@@ -1,6 +1,7 @@
 
 declare namespace product {
 
+    
     interface State {
         data: productResponse[]; // Assuming data is an array of Product type
         isLoading: boolean;

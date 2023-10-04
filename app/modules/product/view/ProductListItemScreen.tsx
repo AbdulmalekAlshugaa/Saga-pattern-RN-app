@@ -8,21 +8,25 @@ import { useAppDispatch } from "../../main/src/configureStore";
 import MainLoadingScreen from "../../main/view/MainLoadingScreen";
 import ProductSearch from "./ProductSearch";
 import { useDebounce } from "../hooks/useDebounce";
+import MainErrorsScreen from "../../main/view/MainErrorsScreen";
 
 export default function ProductListItemScreen() {
-  const { data, isLoading,  isSuccess, isRefetching, refetch } = useGetProducts();
-  const [products, setProducts] = useState<product.productResponse[]>(data as product.productResponse[]);
+  const { data, isLoading,  isSuccess, isRefetching, refetch , isFetched, error, status} = useGetProducts();
+  const [products, setProducts] = useState<product.productResponse[]>([]);
   const dispatch = useAppDispatch();
   const exist = () => dispatch(productActions.exitProduct());
   const enterProductListItem = () => dispatch(productActions.enterProductList());
   const enterProductDetails = (item: product.productResponse) => dispatch(productActions.enterProductDetail(item));
 
+  
   useEffect(() => {
     enterProductListItem();
+    setProducts(data as product.productResponse[]);
     return () => {
       exist();
     };
-  }, []);
+  }, [isLoading]);
+
 
   const renderProduct = (item: product.productResponse) => (
     <ProductListItem
@@ -42,7 +46,7 @@ export default function ProductListItemScreen() {
     <>
       {isLoading ? (
         <MainLoadingScreen />
-      ) : isSuccess ? (
+      ) : isSuccess && data !== 'error'? (
         <MainSafeAreaScreen>
           <ProductSearch
             onChangeText={applySearch}
@@ -53,6 +57,7 @@ export default function ProductListItemScreen() {
             showsVerticalScrollIndicator={false}
             alwaysBounceVertical={false}
             renderItem={({ item }) => renderProduct(item)}
+            keyExtractor={(item) => item.id.toString()}
             refreshControl={
               <RefreshControl
                 refreshing={isRefetching}
@@ -63,7 +68,9 @@ export default function ProductListItemScreen() {
             }
           />
         </MainSafeAreaScreen>
-      ) : null}
+      ) : 
+      <MainErrorsScreen/>
+      }
     </>
   );
 }
