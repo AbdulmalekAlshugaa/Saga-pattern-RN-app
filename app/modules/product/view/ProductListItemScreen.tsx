@@ -1,44 +1,61 @@
-import { StyleSheet, FlatList } from "react-native";
+import { useEffect } from "react";
+import { RefreshControl, FlatList } from "react-native";
 import ProductListItem from "./ProductListItem";
 import { useGetProducts } from "../hooks/useGetProductQuery";
 import MainSafeAreaScreen from "../../main/view/MainSafeAreaScreen";
-import { navigateTo } from "../../navigation/RootNavigation";
-import { mainAppRoutes } from "../../navigation/mainScreenRoutes";
-import { useEffect } from "react";
 import { productActions } from "../src/productAction";
 import { useAppDispatch } from "../../main/src/configureStore";
+import MainLoadingScreen from "../../main/view/MainLoadingScreen";
 
 export default function ProductListItemScreen() {
-  const { data = [], isLoading, isError, error } = useGetProducts();
-  
+  const {
+    data = [],
+    isLoading,
+    isError,
+    error,
+    isSuccess,
+    isRefetching,
+  } = useGetProducts();
+
   const dispatch = useAppDispatch();
-  const exist = () =>  dispatch(productActions.exitProduct())
-  const enterProductListItem = ()=>  dispatch(productActions.enterProductList())
-  const enterProductDetails = (item:product.productResponse)=>  dispatch(productActions.enterProductDetail(item))
+  const exist = () => dispatch(productActions.exitProduct());
+  const enterProductListItem = () =>
+    dispatch(productActions.enterProductList());
+  const enterProductDetails = (item: product.productResponse) =>
+    dispatch(productActions.enterProductDetail(item));
 
-
-  useEffect(() => {   
+  useEffect(() => {
     enterProductListItem();
     return () => {
-        exist();
+      exist();
     };
   }, []);
 
+  const renderProduct = (item: product.productResponse) => (
+    <ProductListItem
+      onPress={() => enterProductDetails(item)}
+      title={item.title}
+      image={item.image}
+      price={Number(item.price).toFixed(2)}
+    />
+  );
+
   return (
-    <MainSafeAreaScreen>
-      <FlatList
-        numColumns={2}
-        data={data}
-        renderItem={({ item }) => (
-          <ProductListItem
-            onPress={() => enterProductDetails(item)}
-            title={item.title}
-            image={item.image}
-            price={item.price}
+    <>
+      {isLoading ? (
+        <MainLoadingScreen />
+      ) : isSuccess ? (
+        <MainSafeAreaScreen>
+          <FlatList
+            numColumns={2}
+            data={data}
+            showsVerticalScrollIndicator={false}
+            alwaysBounceVertical={false}
+            renderItem={({ item }) => renderProduct(item)}
+            keyExtractor={(item) => item.id}
           />
-        )}
-        keyExtractor={(item) => item.id}
-      />
-    </MainSafeAreaScreen>
+        </MainSafeAreaScreen>
+      ) : null}
+    </>
   );
 }

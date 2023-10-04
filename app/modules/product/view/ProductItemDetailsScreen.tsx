@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import MainSafeAreaScreen from "../../main/view/MainSafeAreaScreen";
 import { COLORS, SIZES, TYPOGRAPHY } from "../../main/src/mainConstants";
-import { useRoute } from "@react-navigation/native";
 import ClarkBoldText from "../../../components/ClarkBoldText";
 import ClarkIcon from "../../../components/ClarkIcon";
 import ClarkBodyText from "../../../components/ClarkBodyText";
@@ -15,19 +14,33 @@ import ClarkRatting from "../../../components/ClarkRatting";
 import ClarkButton from "../../../components/ClarkButton";
 import { useAppDispatch } from "../../main/src/configureStore";
 import { productActions } from "../src/productAction";
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const ProductLisDetailsScreen = () => {
-  const route = useRoute();
+type parameters = {
+  ProductLisDetails: {
+    product: product.productResponse | {};
+  }
+}
+type Product = {
+  product: product.productResponse | {};
+};
 
-  const product = route.params?.product;
-  console.log("product", product);
+type ProductLisDetailsNavProps = NativeStackScreenProps<parameters, 'ProductLisDetails'> & {
+  route: {
+    params: Product;
+  };
+};
+
+const ProductLisDetailsScreen = (props: NativeStackScreenProps<ProductLisDetailsNavProps>) => {
+
+  const product = props.route.params?.product ;
 
   const dispatch = useAppDispatch();
   const dropOff = () => dispatch(productActions.dropOffProduct());
 
   const renderProductListItem = () => (
     <MainSafeAreaScreen style={styles.imageBackground}>
-      <ImageBackground  resizeMode={"contain"} imageStyle={styles.image} source={{ uri: product.image }}style={styles.imageBackground} >
+      <ImageBackground progressiveRenderingEnabled={true}  resizeMode={"contain"} imageStyle={styles.image} source={{ uri: product.image }}style={styles.imageBackground} >
         <View style={styles.subViewContainer}> 
         <ClarkIcon name={"cards-heart"} color={COLORS.black} size={24} />
         </View>
