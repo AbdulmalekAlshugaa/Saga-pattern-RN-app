@@ -25,6 +25,7 @@ export function* productRuntime():any {
 export function* productDropOffRuntime() {
   while (true) {
     yield take(productActions.dropOffProduct);
+    // it safe to call goBack() 
     goBack();
   }
 }

@@ -14,12 +14,13 @@ interface ClarkButtonProps {
 const ClarkButton = (props: ClarkButtonProps) => {
   return (
     <TouchableOpacity onPress={props.oPress} style={props.style}>
+     
       <Button
        icon={props.icon}
         style={styles.button}
         loading={props.loading}
         mode="contained"
-        onPress={() => console.log("Pressed")}
+        onPress={props.oPress}
       >
         {props.label}
       </Button>

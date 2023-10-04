@@ -1,13 +1,11 @@
 import {
   StyleSheet,
-  StatusBar,
   View,
   ImageBackground,
   ScrollView,
 } from "react-native";
 import MainSafeAreaScreen from "../../main/view/MainSafeAreaScreen";
-import { COLORS, SIZES, TYPOGRAPHY } from "../../main/src/mainConstants";
-import { useRoute } from "@react-navigation/native";
+import { COLORS, SIZES, } from "../../main/src/mainConstants";
 import ClarkBoldText from "../../../components/ClarkBoldText";
 import ClarkIcon from "../../../components/ClarkIcon";
 import ClarkBodyText from "../../../components/ClarkBodyText";
@@ -15,21 +13,45 @@ import ClarkRatting from "../../../components/ClarkRatting";
 import ClarkButton from "../../../components/ClarkButton";
 import { useAppDispatch } from "../../main/src/configureStore";
 import { productActions } from "../src/productAction";
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { increment } from "../src/counterSlice";
+import { Badge } from "react-native-paper";
+import { useSelector } from "react-redux";
+import { productValue } from "../src/productSelectos";
 
-const ProductLisDetailsScreen = () => {
-  const route = useRoute();
+type parameters = {
+  ProductLisDetails: {
+    product: product.productResponse | {};
+  }
+}
+type Product = {
+  product: product.productResponse | {};
+};
 
-  const product = route.params?.product;
-  console.log("product", product);
+type ProductLisDetailsNavProps = NativeStackScreenProps<parameters, 'ProductLisDetails'> & {
+  route: {
+    params: Product;
+  };
+};
 
+const ProductLisDetailsScreen = (props: NativeStackScreenProps<ProductLisDetailsNavProps>) => {
+
+  const product = props.route.params?.product 
   const dispatch = useAppDispatch();
   const dropOff = () => dispatch(productActions.dropOffProduct());
 
+  const incrementAction = () => dispatch(increment());
+  const count = useSelector(productValue);
+
   const renderProductListItem = () => (
     <MainSafeAreaScreen style={styles.imageBackground}>
-      <ImageBackground  resizeMode={"contain"} imageStyle={styles.image} source={{ uri: product.image }}style={styles.imageBackground} >
+      <ImageBackground progressiveRenderingEnabled={true}  resizeMode={"contain"} imageStyle={styles.image} source={{ uri: product.image }}style={styles.imageBackground} >
         <View style={styles.subViewContainer}> 
         <ClarkIcon name={"cards-heart"} color={COLORS.black} size={24} />
+        <View>
+        {count > 0 && <Badge  style={styles.badge} size={15}  theme={{ colors: { primary: 'green' } }}>{count}</Badge>}
+        <ClarkIcon style={styles.icon} name={"cart"} color={COLORS.black} size={24} />
+        </View>
         </View>
         <ClarkIcon style={styles.backButton} name={"arrow-left"}color={COLORS.black} size={24} onPress={() => dropOff()}/>
       </ImageBackground>
@@ -77,8 +99,7 @@ const ProductLisDetailsScreen = () => {
         />
         <ClarkBoldText title={`$${product.price}`} variant={"titleMedium"} />
       </View>
-
-      <ClarkButton label={"Add to Cart"} icon="cart" oPress={() => {}} />
+      <ClarkButton label={"Add to Cart"} icon="cart" oPress={() => incrementAction()} />
     </View>
   );
 
@@ -160,6 +181,13 @@ const styles = StyleSheet.create({
   backButton: {
     marginVertical: SIZES.S_5,
     marginHorizontal: SIZES.S_5,
+  },
+  badge: {
+    position: 'absolute',
+    top: 0,
+    right: 15,
+    zIndex: 10,
+    
   },
 });
 
