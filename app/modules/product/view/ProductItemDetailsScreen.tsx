@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  StatusBar,
   View,
   ImageBackground,
   ScrollView,

@@ -11,6 +11,10 @@ export const useGetProducts = () => {
         }
         return response.data;
     },
-        { cacheTime: staleTime, staleTime }
+        { 
+            enabled: true,
+            cacheTime: staleTime,
+             staleTime
+         }
     );
 };

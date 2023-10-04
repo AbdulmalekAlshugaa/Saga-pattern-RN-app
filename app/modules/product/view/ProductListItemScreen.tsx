@@ -15,14 +15,14 @@ export default function ProductListItemScreen() {
     error,
     isSuccess,
     isRefetching,
+    refetch
   } = useGetProducts();
+
 
   const dispatch = useAppDispatch();
   const exist = () => dispatch(productActions.exitProduct());
-  const enterProductListItem = () =>
-    dispatch(productActions.enterProductList());
-  const enterProductDetails = (item: product.productResponse) =>
-    dispatch(productActions.enterProductDetail(item));
+  const enterProductListItem = () => dispatch(productActions.enterProductList());
+  const enterProductDetails = (item: product.productResponse) => dispatch(productActions.enterProductDetail(item));
 
   useEffect(() => {
     enterProductListItem();
@@ -53,6 +53,14 @@ export default function ProductListItemScreen() {
             alwaysBounceVertical={false}
             renderItem={({ item }) => renderProduct(item)}
             keyExtractor={(item) => item.id}
+            refreshControl={
+              <RefreshControl
+                refreshing={isRefetching}
+                onRefresh={() => {
+                  refetch()
+                }}
+              />
+            }
           />
         </MainSafeAreaScreen>
       ) : null}

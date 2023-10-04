@@ -7,7 +7,6 @@ declare namespace product {
         data: productResponse[];
     }
 
- 
     interface productResponse {
         id: number;
         category: string;

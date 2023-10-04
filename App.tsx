@@ -4,6 +4,10 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import AppNavigation from "./app/modules/navigation/mainAppNavigation";
 import store from "./app/modules/main/src/configureStore";
 
+if(__DEV__) {
+  import("./ReactotronConfig")
+}
+
 const App = ()=> {
   const queryClient = new QueryClient();
   return (
