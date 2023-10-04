@@ -8,10 +8,11 @@ interface ClarkBoldTextProps {
   title: string;
   style?: any;
   variant?: VariantProp<string>;
+  numberOfLines?: number;
 }
 
 const ClarkBodyText = (props: ClarkBoldTextProps) => {
-  return <Text variant={props.variant} style={[styles.text, props.style]}>{props.title}</Text>;
+  return <Text numberOfLines={props.numberOfLines} variant={props.variant} style={[styles.text, props.style]}>{props.title}</Text>;
 };
 
 const styles = StyleSheet.create({

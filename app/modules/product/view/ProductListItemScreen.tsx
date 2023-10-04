@@ -27,7 +27,6 @@ export default function ProductListItemScreen() {
     };
   }, [isLoading]);
 
-
   const renderProduct = (item: product.productResponse) => (
     <ProductListItem
       onPress={() => enterProductDetails(item)}
