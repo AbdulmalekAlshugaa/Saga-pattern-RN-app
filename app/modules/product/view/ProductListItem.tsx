@@ -21,7 +21,11 @@ export default function ProductListItem(props: ProductListItemProps) {
           source={{ uri: props.image }}
         />
         <Card.Content>
-          <ClarkBodyText style={styles.text} numberOfLines={1} title={props.title}/> 
+          <ClarkBodyText
+            style={styles.text}
+            numberOfLines={1}
+            title={props.title}
+          />
           <ClarkBoldText style={styles.text} title={`$${props.price}`} />
         </Card.Content>
       </Card>
