@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         zIndex: 50,
-        backgroundColor: COLORS.lightGrey,
+        backgroundColor: COLORS.white,
         justifyContent: 'center',
         alignItems: 'center',
 
