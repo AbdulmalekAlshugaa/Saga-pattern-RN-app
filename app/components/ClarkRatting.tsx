@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet,  ViewStyle } from "react-native";
 import React from "react";
 import { Rating } from "react-native-ratings";
 
 interface ClarkRattingProps {
-  style?: any;
+  style?: ViewStyle;
   rating: number;
 }
 
@@ -11,13 +11,10 @@ const ClarkRatting = (props: ClarkRattingProps) => {
 
   return (
     <Rating
-      style={styles.container}
-      disabled={false}
-      iconSet={"Ionicons"}
+      style={styles.container} 
       ratingCount={5}
       startingValue={props.rating}
       imageSize={18}
-      fullStarColor={"red"}
     />
   );
 };
