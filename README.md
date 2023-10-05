@@ -36,6 +36,6 @@ The above two screenshots shows how we utilized saga pattern design within our p
 ```
 
 ### implementation 
-| Home Page |Home Page 2 |
+| Home Page |Details |
 | ----------- | ----------- | 
 |![Simulator Screen Shot - iPhone 13 - 2023-10-05 at 13 32 31](https://github.com/AbdulmalekAlshugaa/E-Commerce-App/assets/33663456/0de091ab-d45c-4e58-8dc0-7cf3d0e964d1)| ![Simulator Screen Shot - iPhone 13 - 2023-10-05 at 13 32 35](https://github.com/AbdulmalekAlshugaa/E-Commerce-App/assets/33663456/a54e3bd8-2a69-4eb5-a6c7-b087b46bc7d0)
