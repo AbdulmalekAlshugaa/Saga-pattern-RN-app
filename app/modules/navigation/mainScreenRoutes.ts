@@ -11,4 +11,3 @@ export const mainAppRouteOptions = Object.freeze({
         headerShown: false
     },
 });
-
