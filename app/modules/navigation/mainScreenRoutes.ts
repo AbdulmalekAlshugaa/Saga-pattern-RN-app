@@ -5,11 +5,10 @@ export const mainAppRoutes = Object.freeze({
 
 export const mainAppRouteOptions = Object.freeze({
     ProductList: {
-        title: 'Product List',
-        
+        headerShown: false
     },
     ProductDetail: {
-        title: 'Product Detail',
+        headerShown: false
     },
 });
 
