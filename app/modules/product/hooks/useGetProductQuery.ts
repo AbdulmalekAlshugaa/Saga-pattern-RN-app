@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ProductApiRoute } from "../src/productApi";
+import { ProductApiRoute } from "../src/productRoutes";
 import networkApi from "../../network/src/networkApi";
 import { errorEnum } from "../src/productConstants";
 
@@ -11,12 +11,12 @@ export const useGetProducts = () => {
       try {
         const response = await networkApi.get(ProductApiRoute.getProducts);
         if (!response.ok) {
-          throw "error";
+          return "error";
         } else {
           return response.data;
         }
       } catch (error) {
-        return "error";
+        return 'error'
       }
     },
     {
