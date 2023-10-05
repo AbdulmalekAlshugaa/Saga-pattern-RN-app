@@ -18,7 +18,6 @@ export default function ProductListItemScreen() {
   const enterProductListItem = () => dispatch(productActions.enterProductList());
   const enterProductDetails = (item: product.productResponse) => dispatch(productActions.enterProductDetail(item));
 
-  
   useEffect(() => {
     enterProductListItem();
     setProducts(data as product.productResponse[]);
