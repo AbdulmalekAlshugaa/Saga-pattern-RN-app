@@ -20,7 +20,6 @@ export const useGetProducts = () => {
       }
     },
     {
-      enabled: true,
       cacheTime: staleTime,
       staleTime,
     }
