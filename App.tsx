@@ -1,7 +1,7 @@
 import { PaperProvider } from "react-native-paper";
 import { Provider } from "react-redux";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import AppNavigation from "./app/modules/navigation/mainAppNavigation";
+import MainAppNavigation from "./app/modules/navigation/MainAppNavigation";
 import store from "./app/modules/main/src/configureStore";
 
 if(__DEV__) {
@@ -14,7 +14,7 @@ const App = ()=> {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <PaperProvider>
-          <AppNavigation />
+          <MainAppNavigation />
         </PaperProvider>
       </QueryClientProvider>
     </Provider>

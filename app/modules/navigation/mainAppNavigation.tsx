@@ -7,7 +7,7 @@ import { mainAppRoutes ,mainAppRouteOptions} from './mainScreenRoutes';
 import { navigationRef } from './RootNavigation';
 const Stack = createNativeStackNavigator();
 
-export default function AppNavigation() {
+export default function MainAppNavigation() {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName={mainAppRoutes.productList}>

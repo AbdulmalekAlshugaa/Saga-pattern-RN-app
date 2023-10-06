@@ -1,12 +1,11 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import React from "react";
 import { Text } from "react-native-paper";
-import { SIZES } from "../modules/main/src/mainConstants";
 import { VariantProp } from "react-native-paper/lib/typescript/components/Typography/types";
 
 interface ClarkBoldTextProps {
   title: string;
-  style?: any;
+  style?: ViewStyle;
   variant?: VariantProp<string>;
   numberOfLines?: number;
 }
