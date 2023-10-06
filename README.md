@@ -20,7 +20,7 @@ saga pattern is a sequence of transactions that updates each service and publish
 
 The above two screenshots shows how we utilized saga pattern design within our project . Saga yields pure objects called effects. Effect is simple javascript object that contains commands that will be executed by a middleware. What are these commands? Commands involve actions like invoking asynchronous functions, dispatching an action to the store, etc. Redux-saga provides some helper effects wrapping internal functions to spawn tasks when some specific actions are dispatched to the Store .
 
-## Main Features
+## Teck Stack 
 1. Redux-toolkit 
 3  Redux-Saga
 4. Interactive UI
