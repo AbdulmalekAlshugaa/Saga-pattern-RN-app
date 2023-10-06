@@ -11,7 +11,7 @@ import { useDebounce } from "../hooks/useDebounce";
 import MainErrorsScreen from "../../main/view/MainErrorsScreen";
 
 export default function ProductListItemScreen() {
-  const { data, isLoading,  isSuccess, isRefetching, refetch } = useGetProducts();
+  const { data, isLoading,  isSuccess, isRefetching, refetch,error} = useGetProducts();
   const [products, setProducts] = useState<product.productResponse[]>([]);
   const dispatch = useAppDispatch();
   const exist = () => dispatch(productActions.exitProduct());
@@ -25,6 +25,7 @@ export default function ProductListItemScreen() {
       exist();
     };
   }, [isLoading]);
+  console.log(error) 
 
   const renderProduct = (item: product.productResponse) => (
     <ProductListItem

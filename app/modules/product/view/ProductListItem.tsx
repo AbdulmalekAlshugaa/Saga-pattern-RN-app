@@ -4,6 +4,7 @@ import { Card, Text } from "react-native-paper";
 import ClarkBoldText from "../../../components/ClarkBoldText";
 import ClarkBodyText from "../../../components/ClarkBodyText";
 
+
 interface ProductListItemProps {
   title: string;
   image: string;
