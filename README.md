@@ -1,5 +1,5 @@
 # E-Commerce-App
-This application serves as an assessment for an interview. I have implemented the best practices of separation of concerns and utilized the saga pattern design to handle side effects. 
+I have implemented the best practices of separation of concerns and utilized the saga pattern design to handle side effects. 
 
 # Task
 Create a simple React Native application that displays a list of products fetched from any
