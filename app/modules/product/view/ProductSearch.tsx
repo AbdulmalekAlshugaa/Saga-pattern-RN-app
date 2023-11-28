@@ -43,7 +43,6 @@ const ProductSearch = (props: ProductSearchProps) => {
   );
 };
 
-export default ProductSearch;
 
 const styles = StyleSheet.create({
   container: {
@@ -53,3 +52,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 });
+
+export default ProductSearch;
