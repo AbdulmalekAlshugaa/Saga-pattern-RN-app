@@ -1,9 +1,8 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Card, Text } from "react-native-paper";
-import ClarkBoldText from "../../../components/ClarkBoldText";
-import ClarkBodyText from "../../../components/ClarkBodyText";
-
+import AppBoldText from "../../../components/AppBoldText";
+import AppBodyText from "../../../components/AppBodyText";
 
 interface ProductListItemProps {
   title: string;
@@ -22,12 +21,12 @@ export default function ProductListItem(props: ProductListItemProps) {
           source={{ uri: props.image }}
         />
         <Card.Content>
-          <ClarkBodyText
+          <AppBodyText
             style={styles.text}
             numberOfLines={1}
             title={props.title}
           />
-          <ClarkBoldText style={styles.text} title={`$${props.price}`} />
+          <AppBoldText style={styles.text} title={`$${props.price}`} />
         </Card.Content>
       </Card>
     </TouchableOpacity>

@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "react-native-paper";
 import { COLORS } from "../modules/main/src/mainConstants";
 
-interface ClarkButtonProps {
+interface AppButtonProps {
   style?: ViewStyle;
   oPress?: () => void;
   loading?: boolean;
@@ -11,12 +11,11 @@ interface ClarkButtonProps {
   icon?: string;
 }
 
-const ClarkButton = (props: ClarkButtonProps) => {
+const AppButton = (props: AppButtonProps) => {
   return (
     <TouchableOpacity onPress={props.oPress} style={props.style}>
-     
       <Button
-       icon={props.icon}
+        icon={props.icon}
         style={styles.button}
         loading={props.loading}
         mode="contained"
@@ -28,7 +27,7 @@ const ClarkButton = (props: ClarkButtonProps) => {
   );
 };
 
-export default ClarkButton;
+export default AppButton;
 
 const styles = StyleSheet.create({
   button: {

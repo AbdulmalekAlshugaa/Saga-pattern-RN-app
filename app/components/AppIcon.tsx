@@ -3,7 +3,7 @@ import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { COLORS } from "../modules/main/src/mainConstants";
 
-interface ClarkIconProps {
+interface AppIconProps {
   name: string;
   size: number;
   color: string;
@@ -11,7 +11,7 @@ interface ClarkIconProps {
   onPress?: () => void;
 }
 
-const ClarkIcon = (props: ClarkIconProps) => {
+const AppIcon = (props: AppIconProps) => {
   return (
     <TouchableOpacity onPress={props.onPress} style={props.style}>
       <Icon name={props.name} size={props.size} color={props.color} />
@@ -19,4 +19,4 @@ const ClarkIcon = (props: ClarkIconProps) => {
   );
 };
 
-export default ClarkIcon;
+export default AppIcon;

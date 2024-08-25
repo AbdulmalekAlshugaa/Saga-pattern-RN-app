@@ -1,23 +1,21 @@
-import { StyleSheet, View } from 'react-native'
-import React from 'react'
-import ClarkBodyText from '../../../components/ClarkBodyText'
+import { StyleSheet, View } from "react-native";
+import React from "react";
+import AppBodyText from "../../../components/AppBodyText";
 
 const MainErrorsScreen = () => {
   return (
     <View style={styles.container}>
-      <ClarkBodyText
-       title='Something went wrong. Please try again later.'
-      />
+      <AppBodyText title="Something went wrong. Please try again later." />
     </View>
-  )
-}
+  );
+};
 
-export default MainErrorsScreen
+export default MainErrorsScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-})
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
