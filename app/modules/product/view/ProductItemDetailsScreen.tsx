@@ -1,5 +1,5 @@
 import { StyleSheet, View, ImageBackground, ScrollView } from "react-native";
-import MainSafeAreaScreen from "../../main/view/MainSafeAreaScreen";
+import Screen from "../../main/view/Screen";
 import { COLORS, SIZES } from "../../main/src/mainConstants";
 import AppBoldText from "../../../components/AppBoldText";
 import AppIcon from "../../../components/AppIcon";
@@ -43,7 +43,7 @@ const ProductLisDetailsScreen = (
   const count = useSelector(productValue);
 
   const renderProductListItem = () => (
-    <MainSafeAreaScreen style={styles.imageBackground}>
+    <Screen style={styles.imageBackground}>
       <ImageBackground
         progressiveRenderingEnabled={true}
         resizeMode={"contain"}
@@ -79,7 +79,7 @@ const ProductLisDetailsScreen = (
           onPress={() => dropOff()}
         />
       </ImageBackground>
-    </MainSafeAreaScreen>
+    </Screen>
   );
 
   const renderProductRatting = () => (

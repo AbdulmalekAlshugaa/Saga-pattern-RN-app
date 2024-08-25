@@ -1,8 +1,8 @@
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 import { RefreshControl, FlatList } from "react-native";
 import ProductListItem from "./ProductListItem";
 import { useGetProducts } from "../hooks/useGetProductQuery";
-import MainSafeAreaScreen from "../../main/view/MainSafeAreaScreen";
+import Screen from "../../main/view/Screen";
 import { productActions } from "../src/productAction";
 import { useAppDispatch } from "../../main/src/configureStore";
 import MainLoadingScreen from "../../main/view/MainLoadingScreen";
@@ -11,12 +11,15 @@ import { useDebounce } from "../hooks/useDebounce";
 import MainErrorsScreen from "../../main/view/MainErrorsScreen";
 
 export default function ProductListItemScreen() {
-  const { data, isLoading,  isSuccess, isRefetching, refetch,error} = useGetProducts();
+  const { data, isLoading, isSuccess, isRefetching, refetch, error } =
+    useGetProducts();
   const [products, setProducts] = useState<product.productResponse[]>([]);
   const dispatch = useAppDispatch();
   const exist = () => dispatch(productActions.exitProduct());
-  const enterProductListItem = () => dispatch(productActions.enterProductList());
-  const enterProductDetails = (item: product.productResponse) => dispatch(productActions.enterProductDetail(item));
+  const enterProductListItem = () =>
+    dispatch(productActions.enterProductList());
+  const enterProductDetails = (item: product.productResponse) =>
+    dispatch(productActions.enterProductDetail(item));
 
   useEffect(() => {
     enterProductListItem();
@@ -25,7 +28,7 @@ export default function ProductListItemScreen() {
       exist();
     };
   }, [isLoading]);
-  console.log(error) 
+  console.log(error);
 
   const renderProduct = (item: product.productResponse) => (
     <ProductListItem
@@ -37,19 +40,22 @@ export default function ProductListItemScreen() {
   );
 
   const applySearch = useDebounce((value: string) => {
-    const finalProducts : product.productResponse[] = data as product.productResponse[];
-    setProducts(finalProducts.filter((item:product.productResponse) => item.title.toLowerCase().includes(value.toLowerCase())));
+    const finalProducts: product.productResponse[] =
+      data as product.productResponse[];
+    setProducts(
+      finalProducts.filter((item: product.productResponse) =>
+        item.title.toLowerCase().includes(value.toLowerCase())
+      )
+    );
   }, 700); // Debounce time in milliseconds
 
   return (
     <>
       {isLoading ? (
         <MainLoadingScreen />
-      ) : isSuccess && data !== 'error'? (
-        <MainSafeAreaScreen>
-          <ProductSearch
-            onChangeText={applySearch}
-           />
+      ) : isSuccess && data !== "error" ? (
+        <Screen>
+          <ProductSearch onChangeText={applySearch} />
           <FlatList
             numColumns={2}
             data={products}
@@ -61,15 +67,15 @@ export default function ProductListItemScreen() {
               <RefreshControl
                 refreshing={isRefetching}
                 onRefresh={() => {
-                  refetch()
+                  refetch();
                 }}
               />
             }
           />
-        </MainSafeAreaScreen>
-      ) : 
-      <MainErrorsScreen/>
-      }
+        </Screen>
+      ) : (
+        <MainErrorsScreen />
+      )}
     </>
   );
 }

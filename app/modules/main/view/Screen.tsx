@@ -1,5 +1,11 @@
 import React from "react";
-import { ColorValue, SafeAreaView, StatusBar, StyleSheet, ViewStyle } from "react-native";
+import {
+  ColorValue,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  ViewStyle,
+} from "react-native";
 import { COLORS } from "../src/mainConstants";
 
 interface MainSafeAreaScreenOwnProps {
@@ -7,13 +13,13 @@ interface MainSafeAreaScreenOwnProps {
   style?: ViewStyle;
 }
 
-const MainSafeAreaScreen: React.FC< React.PropsWithChildren<MainSafeAreaScreenOwnProps>> = (props) => {
+const Screen: React.FC<React.PropsWithChildren<MainSafeAreaScreenOwnProps>> = (
+  props
+) => {
   return (
     <>
       <StatusBar backgroundColor={COLORS.primary} barStyle="dark-content" />
-      <SafeAreaView
-        style={[styles.containerView, props.style]}
-      >
+      <SafeAreaView style={[styles.containerView, props.style]}>
         {props.children}
       </SafeAreaView>
     </>
@@ -26,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainSafeAreaScreen;
+export default Screen;
